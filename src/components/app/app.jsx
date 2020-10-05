@@ -22,7 +22,7 @@ const App = (props) => {
         <Route exact path="/login">
           <AuthScreen />
         </Route>
-        <Route exact path="/offer/:id?">
+        <Route exact path="/offer">
           <RoomScreen/>
         </Route>
       </Switch>
