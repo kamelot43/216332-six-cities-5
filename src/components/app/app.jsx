@@ -5,6 +5,7 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import AuthScreen from "../auth-screen/auth-screen";
 import FavoritesScreen from "../favorites/favorites";
 import RoomScreen from "../room/room";
+import OfferCard from "../offer-card/offer-card";
 
 const App = (props) => {
 
@@ -14,7 +15,7 @@ const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main placesCount={placesCount} />
+          <OfferCard offers={offers} onFocus={() => {}}/>
         </Route>
         <Route exact path="/favorites">
           <FavoritesScreen />
