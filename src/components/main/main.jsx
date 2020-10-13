@@ -4,7 +4,7 @@ import PlacesList from "../places-list/places-list";
 
 const Main = (props) => {
 
-  const {onFocus, offers, placesCount} = props;
+  const {onFocus, offer, placesCount} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -82,7 +82,7 @@ const Main = (props) => {
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>
                 </span>
-                <ul className="places__options places__options--custom places__options--opened">
+                <ul className="places__options places__options--custom">
                   <li className="places__option places__option--active" tabIndex="0">Popular</li>
                   <li className="places__option" tabIndex="0">Price: low to high</li>
                   <li className="places__option" tabIndex="0">Price: high to low</li>
@@ -99,7 +99,7 @@ const Main = (props) => {
               </form>
 
               <PlacesList
-                offers={offer}
+                offer={offer}
                 onFocus={() => {}}
               />
 
@@ -112,17 +112,6 @@ const Main = (props) => {
       </main>
     </div>
   );
-};
-
-Main.propTypes = {
-  onFocus: PropTypes.func.isRequired,
-  offer: PropTypes.shape({
-    city: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    costPerNight: PropTypes.number.isRequired,
-    stars: PropTypes.number.isRequired,
-  }).isRequired,
 };
 
 export default Main;

@@ -19,12 +19,14 @@ export default [
     type: apartamentType[(Math.random() * apartamentType.length) | 0],
     costPerNight: costPerNight[(Math.random() * costPerNight.length) | 0],
     title: `Beautiful & luxurious apartment at great location`,
-    description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-    An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+    description: [
+      `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+      `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`
+    ],
     rating: randomInteger(0, MAX_RATING),
-    stars: Math.floor(this.rating),
+    stars: 3,
     premium: true,
-    pictures: [`img/apartment-03.jpg`, `img/apartment-02.jpg`, `img/apartment-04.jpg`, `img/apartment-05.jpg`],
+    pictures: [`img/room.jpg`, `img/apartment-01.jpg`, `img/apartment-02.jpg`, `img/apartment-03.jpg`, `img/studio-01.jpg`, `img/apartment-03.jpg`],
     maxAdults: adults[(Math.random() * adults.length) | 0],
     bedrooms: bedrooms[(Math.random() * bedrooms.length) | 0],
     features: [`Wi-Fi`, `Washing machine`, `Towels`, `Heating`, `Coffee machine`, `Baby seat`],
@@ -41,9 +43,9 @@ export default [
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
     An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     rating: randomInteger(0, MAX_RATING),
-    stars: Math.floor(this.rating),
+    stars: 4,
     premium: false,
-    pictures: [`img/apartment-03.jpg`, `img/apartment-02.jpg`, `img/apartment-04.jpg`, `img/apartment-05.jpg`],
+    pictures: [`img/room.jpg`, `img/apartment-01.jpg`, `img/apartment-02.jpg`, `img/apartment-03.jpg`, `img/studio-02.jpg`, `img/studio-02.jpg`],
     maxAdults: adults[(Math.random() * adults.length) | 0],
     bedrooms: bedrooms[(Math.random() * bedrooms.length) | 0],
     features: [`Wi-Fi`, `Washing machine`, `Towels`, `Heating`, `Coffee machine`, `Baby seat`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
@@ -60,9 +62,9 @@ export default [
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
     An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     rating: randomInteger(0, MAX_RATING),
-    stars: Math.floor(this.rating),
-    premium: false,
-    pictures: [`img/apartment-03.jpg`, `img/apartment-02.jpg`, `img/apartment-04.jpg`, `img/apartment-05.jpg`],
+    stars: 5,
+    premium: true,
+    pictures: [`img/room.jpg`, `img/apartment-01.jpg`, `img/apartment-02.jpg`, `img/apartment-03.jpg`, `img/studio-02.jpg`, `img/studio-02.jpg`],
     maxAdults: adults[(Math.random() * adults.length) | 0],
     bedrooms: bedrooms[(Math.random() * bedrooms.length) | 0],
     features: [`Wi-Fi`, `Washing machine`, `Towels`],
@@ -79,9 +81,9 @@ export default [
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
     An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     rating: randomInteger(0, MAX_RATING),
-    stars: Math.floor(this.rating),
+    stars: 3,
     premium: false,
-    pictures: [`img/apartment-03.jpg`, `img/apartment-02.jpg`, `img/apartment-04.jpg`, `img/apartment-05.jpg`],
+    pictures: [`img/room.jpg`, `img/apartment-01.jpg`, `img/apartment-02.jpg`, `img/apartment-03.jpg`, `img/studio-02.jpg`, `img/studio-02.jpg`],
     maxAdults: adults[(Math.random() * adults.length) | 0],
     bedrooms: bedrooms[(Math.random() * bedrooms.length) | 0],
     features: [`Towels`, `Heating`, `Coffee machine`, `Baby seat`, `Kitchen`, `Dishwasher`, `Cabel TV`, `Fridge`],
@@ -90,6 +92,4 @@ export default [
       avatar: `${AVATAR_URL}/${Math.random()}`,
     }
   }
-
-
 ];

@@ -6,19 +6,19 @@ import AuthScreen from "../auth-screen/auth-screen";
 import FavoritesScreen from "../favorites/favorites";
 import RoomScreen from "../room/room";
 import OfferCard from "../offer-card/offer-card";
+import PlacesList from "../places-list/places-list";
+import Room from "../room/room";
 
 const App = (props) => {
 
-  const {placesCount} = props;
+  const {placesCount, offer, comments} = props;
+  console.log(offer[0]);
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <OfferCard offers={offers} onFocus={() => {}}/>
-        </Route>
-        <Route exact path="/favorites">
-          <FavoritesScreen />
+          <FavoritesScreen offer={offer[0]} onFocus={() => {}}/>
         </Route>
         <Route exact path="/login">
           <AuthScreen />

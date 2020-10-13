@@ -10,31 +10,31 @@ class PlacesList extends PureComponent {
   }
 
   render() {
-    const {onFocus, offers} = this.props;
+    const {onFocus, offer} = this.props;
 
     return (
-
-      {offers.map((offer, i) => (
-
-        <OfferCard
-          offers={offer}
-          onFocus={() => {}}
-        />
-
-        ))}
+        <div className="cities__places-list places__list tabs__content">
+        {offer.map((item, i) => (
+            <OfferCard
+              key={`${i}`}
+              offer={item}
+              onFocus={() => {}}
+            />
+          ))}
+        </div>
     )
-  }
+  };
 }
 
 PlacesList.propTypes = {
   onFocus: PropTypes.func.isRequired,
   offer: PropTypes.shape({
-    city: PropTypes.string.isRequired,
     picture: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
     costPerNight: PropTypes.number.isRequired,
-    stars: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
   }).isRequired,
 };
+
 
 export default PlacesList;

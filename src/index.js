@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app";
-import offers from "./mocks/offers";
+import offer from "./mocks/offers";
+import comments from "./mocks/comments";
 
 const Settings = {
   PLACES_COUNT: 312
@@ -10,7 +11,8 @@ const Settings = {
 ReactDOM.render(
     <App
       placesCount={Settings.PLACES_COUNT}
-      offers={offers}
+      offer={offer}
+      comments={comments}
     />,
     document.querySelector(`#root`)
 );
