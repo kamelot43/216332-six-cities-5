@@ -12,13 +12,12 @@ import Room from "../room/room";
 const App = (props) => {
 
   const {placesCount, offer, comments} = props;
-  console.log(offer[0]);
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <FavoritesScreen offer={offer[0]} onFocus={() => {}}/>
+          <Room offer={offer[0]} comments={comments} onFocus={() => {}}/>
         </Route>
         <Route exact path="/login">
           <AuthScreen />
