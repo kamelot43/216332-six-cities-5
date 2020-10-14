@@ -17,13 +17,16 @@ const App = (props) => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Room offer={offer[0]} comments={comments} onFocus={() => {}}/>
+          <Main offer={offer} comments={comments} onFocus={() => {}}/>
         </Route>
         <Route exact path="/login">
           <AuthScreen />
         </Route>
+        <Route exact path="/favorite">
+          <FavoritesScreen offer={offer[0]} onFocus={() => {}}/>
+        </Route>
         <Route exact path="/offer/:id?">
-          <RoomScreen/>
+          <Room offer={offer[0]} comments={comments} onFocus={() => {}}/>
         </Route>
       </Switch>
     </BrowserRouter>
