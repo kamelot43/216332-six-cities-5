@@ -15,6 +15,7 @@ function randomInteger(min, max) {
 export default [
   {
     city: cities[(Math.random() * cities.length) | 0],
+    index: 1,
     picture: `img/apartment-03.jpg`,
     type: apartamentType[(Math.random() * apartamentType.length) | 0],
     costPerNight: costPerNight[(Math.random() * costPerNight.length) | 0],
@@ -24,7 +25,6 @@ export default [
       `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`
     ],
     rating: randomInteger(0, MAX_RATING),
-    stars: 3,
     premium: true,
     pictures: [`img/room.jpg`, `img/apartment-01.jpg`, `img/apartment-02.jpg`, `img/apartment-03.jpg`, `img/studio-01.jpg`, `img/apartment-03.jpg`],
     maxAdults: adults[(Math.random() * adults.length) | 0],
@@ -36,6 +36,7 @@ export default [
     }
   }, {
     city: cities[(Math.random() * cities.length) | 0],
+    index: 2,
     picture: `img/apartment-01.jpg`,
     type: apartamentType[(Math.random() * apartamentType.length) | 0],
     costPerNight: costPerNight[(Math.random() * costPerNight.length) | 0],
@@ -43,7 +44,6 @@ export default [
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
     An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     rating: randomInteger(0, MAX_RATING),
-    stars: 4,
     premium: false,
     pictures: [`img/room.jpg`, `img/apartment-01.jpg`, `img/apartment-02.jpg`, `img/apartment-03.jpg`, `img/studio-02.jpg`, `img/studio-02.jpg`],
     maxAdults: adults[(Math.random() * adults.length) | 0],
@@ -55,6 +55,7 @@ export default [
     }
   }, {
     city: cities[(Math.random() * cities.length) | 0],
+    index: 3,
     picture: `img/apartment-03.jpg`,
     type: apartamentType[(Math.random() * apartamentType.length) | 0],
     costPerNight: costPerNight[(Math.random() * costPerNight.length) | 0],
@@ -62,7 +63,6 @@ export default [
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
     An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     rating: randomInteger(0, MAX_RATING),
-    stars: 5,
     premium: true,
     pictures: [`img/room.jpg`, `img/apartment-01.jpg`, `img/apartment-02.jpg`, `img/apartment-03.jpg`, `img/studio-02.jpg`, `img/studio-02.jpg`],
     maxAdults: adults[(Math.random() * adults.length) | 0],
@@ -74,6 +74,7 @@ export default [
     }
   }, {
     city: cities[(Math.random() * cities.length) | 0],
+    index: 4,
     picture: `img/room.jpg`,
     type: apartamentType[(Math.random() * apartamentType.length) | 0],
     costPerNight: costPerNight[(Math.random() * costPerNight.length) | 0],
@@ -81,7 +82,6 @@ export default [
     description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
     An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     rating: randomInteger(0, MAX_RATING),
-    stars: 3,
     premium: false,
     pictures: [`img/room.jpg`, `img/apartment-01.jpg`, `img/apartment-02.jpg`, `img/apartment-03.jpg`, `img/studio-02.jpg`, `img/studio-02.jpg`],
     maxAdults: adults[(Math.random() * adults.length) | 0],

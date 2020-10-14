@@ -1,6 +1,7 @@
 import React from "react";
 import {Cities} from "../../const";
 import FormLogin from "../form-login/form-login";
+import {Link} from "react-router-dom";
 
 const AuthScreen = () => {
   return (
@@ -9,9 +10,9 @@ const AuthScreen = () => {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link" href="main.html">
+              <Link className="header__logo-link" to="/">
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-              </a>
+              </Link>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
@@ -32,13 +33,13 @@ const AuthScreen = () => {
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-           <FormLogin/>
+            <FormLogin/>
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <Link className="locations__item-link" to="/">
                 <span>{Cities.AMSTERDAM}</span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>

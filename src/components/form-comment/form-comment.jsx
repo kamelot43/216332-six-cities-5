@@ -1,14 +1,13 @@
 import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
 
 class FormComment extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      review: '',
-      rating: '',
-    }
+      review: ``,
+      rating: ``,
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -71,7 +70,7 @@ class FormComment extends PureComponent {
           <button className="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
         </div>
       </form>
-    )
+    );
   }
 }
 

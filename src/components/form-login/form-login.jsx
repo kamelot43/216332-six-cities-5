@@ -1,14 +1,13 @@
 import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
 
 class FormLogin extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: '',
-      password: '',
-    }
+      email: ``,
+      password: ``,
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -36,7 +35,7 @@ class FormLogin extends PureComponent {
         </div>
         <button className="login__submit form__submit button" type="submit">Sign in</button>
       </form>
-    )
+    );
   }
 }
 

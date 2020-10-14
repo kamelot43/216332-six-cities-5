@@ -2,6 +2,8 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import OfferCard from "../offer-card/offer-card";
 import FormComment from "../form-comment/form-comment";
+import {Link} from "react-router-dom";
+import {findPercent} from "../../utils";
 
 class Room extends PureComponent {
 
@@ -10,7 +12,7 @@ class Room extends PureComponent {
   }
 
   render() {
-    const {onFocus, offer, comments} = this.props;
+    const {offer, comments} = this.props;
     const {pictures, features, description} = offer;
 
     return (
@@ -19,9 +21,9 @@ class Room extends PureComponent {
           <div className="container">
             <div className="header__wrapper">
               <div className="header__left">
-                <a className="header__logo-link" href="main.html">
-                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-                </a>
+                <Link className="navbar-item" to="/">
+                  <img className="header__logo-link" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
+                </Link>
               </div>
               <nav className="header__nav">
                 <ul className="header__nav-list">
@@ -56,11 +58,11 @@ class Room extends PureComponent {
             <div className="property__container container">
               <div className="property__wrapper">
 
-              {offer.premium === true  &&
-                <div className="property__mark">
-                  <span>Premium</span>
-                </div>
-              }
+                {offer.premium === true &&
+                  <div className="property__mark">
+                    <span>Premium</span>
+                  </div>
+                }
 
                 <div className="property__name-wrapper">
                   <h1 className="property__name">
@@ -75,7 +77,7 @@ class Room extends PureComponent {
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: `80%`}}></span>
+                    <span style={{width: `${findPercent(offer.rating)}%`}}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="property__rating-value rating__value">{offer.rating}</span>
@@ -98,11 +100,11 @@ class Room extends PureComponent {
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                  {features.map((feature, i) => (
-                    <li className="property__inside-item" key={`${i} + ${feature[i]}`}>
-                      {feature}
-                    </li>
-                  ))}
+                    {features.map((feature, i) => (
+                      <li className="property__inside-item" key={`${i} + ${feature[i]}`}>
+                        {feature}
+                      </li>
+                    ))}
                   </ul>
                 </div>
                 <div className="property__host">
@@ -118,7 +120,7 @@ class Room extends PureComponent {
                   <div className="property__description">
                     {description.map((item, i) => (
                       <p className="property__text" key={`${i}`}>
-                       {item}
+                        {item}
                       </p>
                     ))}
                   </div>
@@ -127,31 +129,30 @@ class Room extends PureComponent {
                   <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
                   <ul className="reviews__list">
 
-                  {comments.map((item, i) => (
-                    <li className="reviews__item" key={i}>
-                      <div className="reviews__user user">
-                        <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                          <img className="reviews__avatar user__avatar" src={item.avatar} width="54" height="54" alt="Reviews avatar" />
-                        </div>
-                        <span className="reviews__user-name">
-                          {item.name}
-                        </span>
-                      </div>
-                      <div className="reviews__info">
-                        <div className="reviews__rating rating">
-                          <div className="reviews__stars rating__stars">
-                            <span style={{width: `80%`}}></span>
-                            <span className="visually-hidden">Rating</span>
+                    {comments.map((item, i) => (
+                      <li className="reviews__item" key={i}>
+                        <div className="reviews__user user">
+                          <div className="reviews__avatar-wrapper user__avatar-wrapper">
+                            <img className="reviews__avatar user__avatar" src={item.avatar} width="54" height="54" alt="Reviews avatar" />
                           </div>
+                          <span className="reviews__user-name">
+                            {item.name}
+                          </span>
                         </div>
-                        <p className="reviews__text">
-                          {item.text}
-                        </p>
-                        <time className="reviews__time" dateTime={item.datetime}>{item.formatDateTime}</time>
-                      </div>
-                    </li>
-                  ))}
-
+                        <div className="reviews__info">
+                          <div className="reviews__rating rating">
+                            <div className="reviews__stars rating__stars">
+                              <span style={{width: `${findPercent(item.rating)}%`}}></span>
+                              <span className="visually-hidden">Rating</span>
+                            </div>
+                          </div>
+                          <p className="reviews__text">
+                            {item.text}
+                          </p>
+                          <time className="reviews__time" dateTime={item.datetime}>{item.formatDateTime}</time>
+                        </div>
+                      </li>
+                    ))}
                   </ul>
 
                   <FormComment/>
@@ -166,22 +167,10 @@ class Room extends PureComponent {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
-
                 <OfferCard
                   offer={offer}
                   onFocus={() => {}}
                 />
-
-                <OfferCard
-                  offer={offer}
-                  onFocus={() => {}}
-                />
-
-                <OfferCard
-                  offer={offer}
-                  onFocus={() => {}}
-                />
-
               </div>
             </section>
           </div>
@@ -189,10 +178,9 @@ class Room extends PureComponent {
       </div>
     );
   }
-};
+}
 
 Room.propTypes = {
-  onFocus: PropTypes.func.isRequired,
   offer: PropTypes.shape({
     picture: PropTypes.string.isRequired,
     costPerNight: PropTypes.number.isRequired,
@@ -202,12 +190,11 @@ Room.propTypes = {
     premium: PropTypes.bool.isRequired,
     bedrooms: PropTypes.number.isRequired,
     maxAdults: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    costPerNight: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
     features: PropTypes.array.isRequired,
     description: PropTypes.array.isRequired,
   }).isRequired,
-  comments: PropTypes.shape({
+  comments: PropTypes.arrayOf(PropTypes.shape({
     type: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -215,9 +202,7 @@ Room.propTypes = {
     datetime: PropTypes.string.isRequired,
     formatDateTime: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-  }).isRequired,
+  })).isRequired,
 };
-
-
 
 export default Room;

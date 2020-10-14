@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import FavoriteCard from "../favorite-card/favorite-card";
 import PropTypes from "prop-types";
 import {Cities} from "../../const";
-
+import {Link} from "react-router-dom";
 class FavoritesScreen extends PureComponent {
 
   constructor(props) {
@@ -10,8 +10,7 @@ class FavoritesScreen extends PureComponent {
   }
 
   render() {
-    const {onFocus, offer} = this.props;
-    console.log(this.props);
+    const {offer} = this.props;
 
     return (
       <div className="page">
@@ -19,9 +18,9 @@ class FavoritesScreen extends PureComponent {
           <div className="container">
             <div className="header__wrapper">
               <div className="header__left">
-                <a className="header__logo-link" href="main.html">
+                <Link className="header__logo-link" to="/">
                   <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-                </a>
+                </Link>
               </div>
               <nav className="header__nav">
                 <ul className="header__nav-list">
@@ -54,7 +53,6 @@ class FavoritesScreen extends PureComponent {
                   <div className="favorites__places">
                     <FavoriteCard
                       offer={offer}
-                      onFocus={() => {}}
                     />
 
                   </div>
@@ -65,18 +63,16 @@ class FavoritesScreen extends PureComponent {
           </div>
         </main>
         <footer className="footer container">
-          <a className="footer__logo-link" href="main.html">
+          <Link className="footer__logo-link" to="/">
             <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
-          </a>
+          </Link>
         </footer>
       </div>
     );
   }
-
-};
+}
 
 FavoritesScreen.propTypes = {
-  onFocus: PropTypes.func.isRequired,
   offer: PropTypes.shape({
     picture: PropTypes.string.isRequired,
     costPerNight: PropTypes.number.isRequired,
@@ -84,6 +80,5 @@ FavoritesScreen.propTypes = {
     type: PropTypes.string.isRequired,
   }).isRequired,
 };
-
 
 export default FavoritesScreen;

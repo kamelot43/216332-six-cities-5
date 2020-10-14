@@ -1,7 +1,7 @@
 
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-
+import {Link} from "react-router-dom";
 class FavoriteCard extends PureComponent {
 
   constructor(props) {
@@ -9,15 +9,15 @@ class FavoriteCard extends PureComponent {
   }
 
   render() {
-    const {onFocus, offer} = this.props;
+    const {offer} = this.props;
 
     return (
 
       <article className="favorites__card place-card">
         <div className="favorites__image-wrapper place-card__image-wrapper">
-          <a href="#">
-            <img className="place-card__image" src={offer.picture} width="150" height="110" alt="Place image" />
-          </a>
+          <Link className="navbar-item" to="/offer/:id?">
+            <img className="place-card__image" src={offer.picture} width="150" height="110" alt="Place image"/>
+          </Link>
         </div>
         <div className="favorites__card-info place-card__info">
           <div className="place-card__price-wrapper">
@@ -44,12 +44,11 @@ class FavoriteCard extends PureComponent {
           <p className="place-card__type">{offer.type}</p>
         </div>
       </article>
-    )
+    );
   }
 }
 
 FavoriteCard.propTypes = {
-  onFocus: PropTypes.func.isRequired,
   offer: PropTypes.shape({
     picture: PropTypes.string.isRequired,
     costPerNight: PropTypes.number.isRequired,
@@ -57,7 +56,5 @@ FavoriteCard.propTypes = {
     type: PropTypes.string.isRequired,
   }).isRequired,
 };
-
-
 
 export default FavoriteCard;

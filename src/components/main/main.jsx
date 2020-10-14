@@ -4,7 +4,7 @@ import PlacesList from "../places-list/places-list";
 
 const Main = (props) => {
 
-  const {onFocus, offer, placesCount} = props;
+  const {offer, placesCount} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -113,5 +113,17 @@ const Main = (props) => {
     </div>
   );
 };
+
+Main.propTypes = {
+  placesCount: PropTypes.number.isRequired,
+  offer: PropTypes.arrayOf(PropTypes.shape({
+    premium: PropTypes.bool.isRequired,
+    picture: PropTypes.string.isRequired,
+    costPerNight: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  })).isRequired,
+};
+
 
 export default Main;

@@ -1,6 +1,8 @@
 
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+import {roundUpRating, findPercent} from "../../utils";
 
 class OfferCard extends PureComponent {
 
@@ -13,18 +15,25 @@ class OfferCard extends PureComponent {
 
     return (
 
-        <article className="cities__place-card place-card">
+      <article
+        className="cities__place-card place-card"
+        id={offer.index}
+        onMouseEnter={(evt) => {
+          evt.preventDefault();
+          onFocus(offer.index);
+        }}
+      >
 
         {offer.premium === true &&
           <div className="place-card__mark">
-              <span>Premium</span>
+            <span>Premium</span>
           </div>
         }
 
         <div className="cities__image-wrapper place-card__image-wrapper">
-          <a href="#">
+          <Link className="navbar-item" to="/offer/:id?">
             <img className="place-card__image" src={offer.picture} width="260" height="200" alt="Place image"/>
-          </a>
+          </Link>
         </div>
         <div className="place-card__info">
           <div className="place-card__price-wrapper">
@@ -41,7 +50,7 @@ class OfferCard extends PureComponent {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{width: `80%`}}></span>
+              <span style={{width: `${findPercent(roundUpRating(offer.rating))}%`}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
@@ -50,21 +59,22 @@ class OfferCard extends PureComponent {
           </h2>
           <p className="place-card__type">{offer.type}</p>
         </div>
-        </article>
-    )
+      </article>
+    );
   }
 }
 
 OfferCard.propTypes = {
   onFocus: PropTypes.func.isRequired,
   offer: PropTypes.shape({
+    rating: PropTypes.string.isRequired,
+    premium: PropTypes.bool.isRequired,
+    index: PropTypes.number.isRequired,
     picture: PropTypes.string.isRequired,
     costPerNight: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   }).isRequired,
 };
-
-
 
 export default OfferCard;
