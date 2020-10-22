@@ -33,7 +33,8 @@ export default [
     owner: {
       name: `Karina`,
       avatar: `${AVATAR_URL}/${Math.random()}`,
-    }
+    },
+    coordinates: [52.3909553943508, 4.85309666406198],
   }, {
     city: cities[(Math.random() * cities.length) | 0],
     index: 2,
@@ -52,7 +53,8 @@ export default [
     owner: {
       name: `Peter`,
       avatar: `${AVATAR_URL}/${Math.random()}`,
-    }
+    },
+    coordinates: [52.369553943508, 4.85309666406198],
   }, {
     city: cities[(Math.random() * cities.length) | 0],
     index: 3,
@@ -71,7 +73,8 @@ export default [
     owner: {
       name: `Mikel`,
       avatar: `${AVATAR_URL}/${Math.random()}`,
-    }
+    },
+    coordinates: [52.3909553943508, 4.929309666406198],
   }, {
     city: cities[(Math.random() * cities.length) | 0],
     index: 4,
@@ -90,6 +93,7 @@ export default [
     owner: {
       name: `Daniel`,
       avatar: `${AVATAR_URL}/${Math.random()}`,
-    }
+    },
+    coordinates: [52.3809553943508, 4.939309666406198],
   }
 ];

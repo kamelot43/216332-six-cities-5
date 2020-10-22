@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import PlacesList from "../places-list/places-list";
+import Map from "../map/map"
 
 const Main = (props) => {
 
@@ -102,14 +103,17 @@ const Main = (props) => {
                 offer={offer}
                 onFocus={() => {}}
               />
-
             </section>
+
             <div className="cities__right-section">
               <section className="cities__map map"></section>
             </div>
           </div>
         </div>
       </main>
+      <div>
+        <Map/>
+      </div>
     </div>
   );
 };
