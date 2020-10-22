@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import leaflet from 'leaflet';
-import leaflet.css;
+
 import PropTypes from "prop-types";
 
 const city = [52.38333, 4.9];
