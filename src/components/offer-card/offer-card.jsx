@@ -4,6 +4,23 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {roundUpRating, findPercent} from "../../utils";
 
+const Type = {
+  CITY: `city`,
+  NEAR: `near`,
+  FAVORITE: `favorite`
+};
+
+const getComponentByType = (type) => {
+  switch (type) {
+    case Type.CITY:
+      return `cities__place-card`;
+    case Type.NEAR:
+      return `near-places__card`;
+    case Type.FAVORITE:
+      return `favorites__card`;
+  }
+};
+
 class OfferCard extends PureComponent {
 
   constructor(props) {
@@ -11,12 +28,12 @@ class OfferCard extends PureComponent {
   }
 
   render() {
-    const {onFocus, offer} = this.props;
+    const {onFocus, offer, type} = this.props;
 
     return (
 
       <article
-        className="cities__place-card place-card"
+        className={`${getComponentByType(type)} place-card`}
         id={offer.index}
         onMouseEnter={(evt) => {
           evt.preventDefault();
@@ -30,12 +47,12 @@ class OfferCard extends PureComponent {
           </div>
         }
 
-        <div className="cities__image-wrapper place-card__image-wrapper">
+        <div className={`${getComponentByType(type)}__image-wrapper place-card__image-wrapper`}>
           <Link className="navbar-item" to="/offer/:id?">
             <img className="place-card__image" src={offer.picture} width="260" height="200" alt="Place image"/>
           </Link>
         </div>
-        <div className="place-card__info">
+        <div className={`${type === `favorite` ? favorites__card-info : null} place-card__info`}>
           <div className="place-card__price-wrapper">
             <div className="place-card__price">
               <b className="place-card__price-value">&euro; {offer.costPerNight}</b>

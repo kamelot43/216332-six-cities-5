@@ -2,8 +2,19 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import OfferCard from "../offer-card/offer-card";
 import FormComment from "../form-comment/form-comment";
+import ReviewList from "../review-list/review-list";
+import PlacesList from "../places-list/places-list";
+import Map from "../map/map";
 import {Link} from "react-router-dom";
 import {findPercent} from "../../utils";
+const MAX_OFFERS = 3;
+
+const Type = {
+  CITY: `city`,
+  NEAR: `near`,
+  FAVORITE: `favorite`
+};
+
 
 class Room extends PureComponent {
 
@@ -12,8 +23,11 @@ class Room extends PureComponent {
   }
 
   render() {
-    const {offer, comments} = this.props;
+    const {offer, offers, comments} = this.props;
     const {pictures, features, description} = offer;
+    const filterArray = offers.filter((item, i) => (
+      i < MAX_OFFERS
+    ));
 
     return (
       <div className="page">
@@ -125,53 +139,28 @@ class Room extends PureComponent {
                     ))}
                   </div>
                 </div>
-                <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
-                  <ul className="reviews__list">
-
-                    {comments.map((item, i) => (
-                      <li className="reviews__item" key={i}>
-                        <div className="reviews__user user">
-                          <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                            <img className="reviews__avatar user__avatar" src={item.avatar} width="54" height="54" alt="Reviews avatar" />
-                          </div>
-                          <span className="reviews__user-name">
-                            {item.name}
-                          </span>
-                        </div>
-                        <div className="reviews__info">
-                          <div className="reviews__rating rating">
-                            <div className="reviews__stars rating__stars">
-                              <span style={{width: `${findPercent(item.rating)}%`}}></span>
-                              <span className="visually-hidden">Rating</span>
-                            </div>
-                          </div>
-                          <p className="reviews__text">
-                            {item.text}
-                          </p>
-                          <time className="reviews__time" dateTime={item.datetime}>{item.formatDateTime}</time>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <FormComment/>
+                <section className="property__reviews">
+                <ReviewList
+                    comments={comments}
+                  />
+                <FormComment/>
                 </section>
               </div>
             </div>
-            <section className="property__map map"></section>
+            <section className="property__map map">
+              <Map
+                offer={filterArray}
+              />
+            </section>
           </section>
-
 
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
-              <div className="near-places__list places__list">
-                <OfferCard
-                  offer={offer}
-                  onFocus={() => {}}
-                />
-              </div>
+              <PlacesList
+                offer={filterArray}
+                type={Type.NEAR}
+              />
             </section>
           </div>
         </main>

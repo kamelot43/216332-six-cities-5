@@ -3,6 +3,12 @@ import PropTypes from "prop-types";
 import PlacesList from "../places-list/places-list";
 import Map from "../map/map";
 
+const Type = {
+  CITY: `city`,
+  NEAR: `near`,
+  FAVORITE: `favorite`
+};
+
 const Main = (props) => {
 
   const {offer, placesCount} = props;
@@ -100,6 +106,7 @@ const Main = (props) => {
               </form>
 
               <PlacesList
+                type={Type.CITY}
                 offer={offer}
                 onFocus={() => {}}
               />

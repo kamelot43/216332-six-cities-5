@@ -35,14 +35,14 @@ class Map extends PureComponent {
     })
   .addTo(map);
 
-    { offer.forEach((item) => (
+    offer.forEach((item) => (
       leaflet.marker(item.coordinates, {icon}).addTo(map)
-    )); }
+    ));
   }
 
   render() {
     return (
-      <section className="cities__map map">
+      <section className="cities__map map" style={{height: `100%`}}>
         <div ref={this.mapContainer} style={{height: `100%`}}></div>
       </section>
     );
