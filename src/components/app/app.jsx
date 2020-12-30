@@ -23,7 +23,14 @@ const App = (props) => {
           <FavoritesScreen offer={offer[0]} />
         </Route>
         <Route exact path="/offer/:id?">
-          <Room offer={offer[0]} offers={offer} comments={comments}/>
+        <Route
+              exact
+              path="/offer/:id?"
+              render={({ match }) => (
+                <Room id={match.params.id} offers={offer} comments={comments}></Room>
+              )}
+            >
+            </Route>
         </Route>
       </Switch>
     </BrowserRouter>

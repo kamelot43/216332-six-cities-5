@@ -1,7 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import PlacesList from "../places-list/places-list";
+import CitiesList from "../cities-list/cities-list";
+import {Cities} from "../../const";
 import Map from "../map/map";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../store/actions";
 
 const Type = {
   CITY: `city`,
@@ -10,9 +14,15 @@ const Type = {
 };
 
 const Main = (props) => {
-
-  const {offer, placesCount} = props;
-
+  // задачи, которые необходимо реализовать в рамках текущей задачи
+  // фильтрация массива с предложениями по выбранному городу
+  // отрисовка выборки
+  // понять каким должно быть поведение при первой загрузке: откуда берем список отелей, как его фильтруем и отрисовываем ?
+  // какое дальнейшее взаимодействие при клике на город ?
+  // коммит в демке 5.7
+ const {placesCount, offer, city, changeCity, offersList} = props;
+ const arrayCities = Object.values(Cities);
+ 
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -40,42 +50,12 @@ const Main = (props) => {
 
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
-        <div className="tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
-          </section>
-        </div>
+        <CitiesList
+          offer={offer}
+          cities={arrayCities}
+          active={city}
+          onClick={changeCity}
+        />
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
@@ -113,9 +93,11 @@ const Main = (props) => {
             </section>
 
             <div className="cities__right-section">
+              {/* 
               <Map
                 offer={offer}
               />
+              */}
             </div>
           </div>
         </div>
@@ -137,5 +119,19 @@ Main.propTypes = {
   })).isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  city: state.city,
+  offersList: state.offersList,
+});
 
-export default Main;
+const mapDispatchToProps = (dispatch) => ({
+  changeCity(offer ,value) {
+    dispatch(ActionCreator.changeCity(value));
+    dispatch(ActionCreator.changeOffers(offer, value));
+  },
+ 
+});
+
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

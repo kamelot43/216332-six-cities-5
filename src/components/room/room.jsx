@@ -15,7 +15,6 @@ const Type = {
   FAVORITE: `favorite`
 };
 
-
 class Room extends PureComponent {
 
   constructor(props) {
@@ -23,8 +22,10 @@ class Room extends PureComponent {
   }
 
   render() {
-    const {offer, offers, comments} = this.props;
-    const {pictures, features, description} = offer;
+    const {offers, comments, id} = this.props;
+    const offer = offers[id -1];
+    const {images, goods, description, host} = offer;
+
     const filterArray = offers.filter((item, i) => (
       i < MAX_OFFERS
     ));
@@ -60,7 +61,7 @@ class Room extends PureComponent {
             <div className="property__gallery-container container">
               <div className="property__gallery">
 
-                {pictures.map((picture, i) => (
+                {images.map((picture, i) => (
 
                   <div className="property__image-wrapper" key={i}>
                     <img className="property__image" src={picture} alt="" />
@@ -72,7 +73,7 @@ class Room extends PureComponent {
             <div className="property__container container">
               <div className="property__wrapper">
 
-                {offer.premium === true &&
+                {offer.is_premium === true &&
                   <div className="property__mark">
                     <span>Premium</span>
                   </div>
@@ -104,17 +105,17 @@ class Room extends PureComponent {
                     {offer.bedrooms} Bedrooms
                   </li>
                   <li className="property__feature property__feature--adults">
-                    Max {offer.maxAdults} adults
+                    Max {offer.max_adults} adults
                   </li>
                 </ul>
                 <div className="property__price">
-                  <b className="property__price-value">&euro;{offer.costPerNight}</b>
+                  <b className="property__price-value">&euro;{offer.price}</b>
                   <span className="property__price-text">&nbsp;night</span>
                 </div>
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                    {features.map((feature, i) => (
+                    {goods.map((feature, i) => (
                       <li className="property__inside-item" key={`${i} + ${feature[i]}`}>
                         {feature}
                       </li>
@@ -125,18 +126,16 @@ class Room extends PureComponent {
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
                     <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                      <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
+                      <img className="property__avatar user__avatar" src={host.avatar_url} width="74" height="74" alt="Host avatar" />
                     </div>
                     <span className="property__user-name">
-                      Angelina
+                      {host.name}
                     </span>
                   </div>
                   <div className="property__description">
-                    {description.map((item, i) => (
-                      <p className="property__text" key={`${i}`}>
-                        {item}
+                      <p className="property__text" >
+                        {description}
                       </p>
-                    ))}
                   </div>
                 </div>
                 <section className="property__reviews">
@@ -148,9 +147,11 @@ class Room extends PureComponent {
               </div>
             </div>
             <section className="property__map map">
+              {/*
               <Map
                 offer={filterArray}
               />
+              */}
             </section>
           </section>
 

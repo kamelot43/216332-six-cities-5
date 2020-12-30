@@ -7,3 +7,7 @@ export function roundUpRating(rating) {
 export function findPercent(digit) {
   return (((digit / MAX_RATING) * 100));
 }
+
+export const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};

@@ -41,21 +41,21 @@ class OfferCard extends PureComponent {
         }}
       >
 
-        {offer.premium === true &&
+        {offer.is_premium === true &&
           <div className="place-card__mark">
             <span>Premium</span>
           </div>
         }
 
         <div className={`${getComponentByType(type)}__image-wrapper place-card__image-wrapper`}>
-          <Link className="navbar-item" to="/offer/:id?">
-            <img className="place-card__image" src={offer.picture} width="260" height="200" alt="Place image"/>
+          <Link className="navbar-item" to={`/offer/${offer.id}`}>
+            <img className="place-card__image" src={offer.preview_image} width="260" height="200" alt="Place image"/>
           </Link>
         </div>
         <div className={`${type === `favorite` ? favorites__card-info : null} place-card__info`}>
           <div className="place-card__price-wrapper">
             <div className="place-card__price">
-              <b className="place-card__price-value">&euro; {offer.costPerNight}</b>
+              <b className="place-card__price-value">&euro; {offer.price}</b>
               <span className="place-card__price-text">/&nbsp;night</span>
             </div>
             <button className="place-card__bookmark-button button" type="button">

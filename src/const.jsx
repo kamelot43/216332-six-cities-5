@@ -11,7 +11,7 @@ export const Cities = {
   BRUSSELS: `Brussels`,
   AMSTERDAM: `Amsterdam`,
   HAMBURG: `Hamburg`,
-  DUSSELDORF: `dusseldorf`,
+  DUSSELDORF: `Dusseldorf`,
 };
 
 export const MAX_RATING = 5;
