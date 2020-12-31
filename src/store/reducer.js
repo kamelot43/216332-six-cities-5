@@ -2,7 +2,7 @@ import {extend} from "../utils";
 import {ActionType} from "./actions";
 
 const initialState = {
-  city: 'Hamburg',
+  city: 'Paris',
   offersList: [],
 };
 

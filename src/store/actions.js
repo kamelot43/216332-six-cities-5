@@ -10,7 +10,7 @@ export const ActionCreator = {
   }),
   changeOffers: (offers, value) => {
     let filterArray;
-    filterArray = offers.map(a => a.city).flat().filter(item => item.name === value)
+    filterArray = offers.filter(item => item.city.name === value)
 
     return {
     type: ActionType.SET_OFFERS,

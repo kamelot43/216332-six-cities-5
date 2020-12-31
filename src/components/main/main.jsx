@@ -1,4 +1,4 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import PlacesList from "../places-list/places-list";
 import CitiesList from "../cities-list/cities-list";
@@ -13,18 +13,30 @@ const Type = {
   FAVORITE: `favorite`
 };
 
-const Main = (props) => {
+class Main extends PureComponent {
   // задачи, которые необходимо реализовать в рамках текущей задачи
   // фильтрация массива с предложениями по выбранному городу
   // отрисовка выборки
   // понять каким должно быть поведение при первой загрузке: откуда берем список отелей, как его фильтруем и отрисовываем ?
   // какое дальнейшее взаимодействие при клике на город ?
   // коммит в демке 5.7
- const {placesCount, offer, city, changeCity, offersList} = props;
- const arrayCities = Object.values(Cities);
- 
-  return (
-    <div className="page page--gray page--main">
+
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    const {offer, city, changeCity} = this.props;
+    changeCity(offer, city);
+
+  }
+
+  render() {
+    const {offer, city, changeCity, offersList} = this.props;
+    const arrayCities = Object.values(Cities);
+
+    return (
+      <div className="page page--gray page--main">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -60,7 +72,7 @@ const Main = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesCount} places to stay in Amsterdam</b>
+              <b className="places__found">{offersList.length} places to stay in {city}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -87,7 +99,7 @@ const Main = (props) => {
 
               <PlacesList
                 type={Type.CITY}
-                offer={offer}
+                offer={offersList}
                 onFocus={() => {}}
               />
             </section>
@@ -105,7 +117,8 @@ const Main = (props) => {
       <div>
       </div>
     </div>
-  );
+    )
+  }
 };
 
 Main.propTypes = {
@@ -125,8 +138,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeCity(offer ,value) {
+  changeCity(offer, value) {
     dispatch(ActionCreator.changeCity(value));
+    dispatch(ActionCreator.changeOffers(offer, value));
+  },
+  changeOffers(offer ,value) {
     dispatch(ActionCreator.changeOffers(offer, value));
   },
  
