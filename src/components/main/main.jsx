@@ -15,11 +15,7 @@ const Type = {
 
 class Main extends PureComponent {
   // задачи, которые необходимо реализовать в рамках текущей задачи
-  // фильтрация массива с предложениями по выбранному городу
-  // отрисовка выборки
-  // понять каким должно быть поведение при первой загрузке: откуда берем список отелей, как его фильтруем и отрисовываем ?
-  // какое дальнейшее взаимодействие при клике на город ?
-  // коммит в демке 5.7
+  // показат актуальный список городов на картие. обновлять крату и передавать свежий массив + перерисовка данных
 
   constructor(props) {
     super(props);
@@ -28,13 +24,12 @@ class Main extends PureComponent {
   componentDidMount() {
     const {offer, city, changeCity} = this.props;
     changeCity(offer, city);
-
   }
 
   render() {
     const {offer, city, changeCity, offersList} = this.props;
     const arrayCities = Object.values(Cities);
-
+  
     return (
       <div className="page page--gray page--main">
       <header className="header">
@@ -105,11 +100,11 @@ class Main extends PureComponent {
             </section>
 
             <div className="cities__right-section">
-              {/* 
+              {offersList.length > 0 ?
               <Map
-                offer={offer}
-              />
-              */}
+                offer={offersList}
+               /> 
+              : null }
             </div>
           </div>
         </div>
