@@ -11,7 +11,7 @@ class citiesList extends PureComponent {
   }
 
   render() {
-    const {cities, active, onClick, offer} = this.props;
+    const {cities, active, onClick, offer, activeFilter} = this.props;
 
     return (
         <div className="tabs">
@@ -19,8 +19,8 @@ class citiesList extends PureComponent {
           <ul className="locations__list tabs__list">
             {cities.map((item, i) => (
               <li className="locations__item" key={i}>
-                <a className={`locations__item-link tabs__item ${active === item ? `tabs__item--active` : null}`} href="#" onClick={() => onClick(offer, item)}>
-                  <span>{item}</span>
+                <a className={`locations__item-link tabs__item ${active === item ? `tabs__item--active` : null}`} href="#" onClick={() => onClick(offer, item, activeFilter)}>
+                 <span>{item}</span>
                 </a>
             </li>
             ))}

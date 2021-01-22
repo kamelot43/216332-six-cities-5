@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import PlacesList from "../places-list/places-list";
 import CitiesList from "../cities-list/cities-list";
+import PlacesSorting from "../places-sorting/places-sorting";
 import {Cities} from "../../const";
 import Map from "../map/map";
 import {connect} from "react-redux";
@@ -14,8 +15,6 @@ const Type = {
 };
 
 class Main extends PureComponent {
-  // задачи, которые необходимо реализовать в рамках текущей задачи
-  // показат актуальный список городов на картие. обновлять крату и передавать свежий массив + перерисовка данных
 
   constructor(props) {
     super(props);
@@ -27,7 +26,7 @@ class Main extends PureComponent {
   }
 
   render() {
-    const {offer, city, changeCity, offersList} = this.props;
+    const {offer, city, changeCity,  sortOffers, offersList, activeFilter} = this.props;
     const arrayCities = Object.values(Cities);
   
     return (
@@ -61,6 +60,7 @@ class Main extends PureComponent {
           offer={offer}
           cities={arrayCities}
           active={city}
+          activeFilter={activeFilter}
           onClick={changeCity}
         />
         <div className="cities">
@@ -68,29 +68,12 @@ class Main extends PureComponent {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{offersList.length} places to stay in {city}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex="0">
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom">
-                  <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                  <li className="places__option" tabIndex="0">Price: low to high</li>
-                  <li className="places__option" tabIndex="0">Price: high to low</li>
-                  <li className="places__option" tabIndex="0">Top rated first</li>
-                </ul>
-                {/*
-                <select className="places__sorting-type" id="places-sorting">
-                  <option className="places__option" value="popular" selected="">Popular</option>
-                  <option className="places__option" value="to-high">Price: low to high</option>
-                  <option className="places__option" value="to-low">Price: high to low</option>
-                  <option className="places__option" value="top-rated">Top rated first</option>
-                </select>
-                */}
-              </form>
+
+              <PlacesSorting
+                onClick={sortOffers}
+                offer={offersList}
+                activeFilter={activeFilter}
+              />
 
               <PlacesList
                 type={Type.CITY}
@@ -130,17 +113,23 @@ Main.propTypes = {
 const mapStateToProps = (state) => ({
   city: state.city,
   offersList: state.offersList,
+  activeFilter: state.activeFilter,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   changeCity(offer, value) {
     dispatch(ActionCreator.changeCity(value));
     dispatch(ActionCreator.changeOffers(offer, value));
+    dispatch(ActionCreator.setFilter(0));
   },
   changeOffers(offer ,value) {
     dispatch(ActionCreator.changeOffers(offer, value));
   },
- 
+  sortOffers(offer, id) {
+    dispatch(ActionCreator.setFilter(id));
+    dispatch(ActionCreator.sortOffers(offer, id));
+  },
+  
 });
 
 

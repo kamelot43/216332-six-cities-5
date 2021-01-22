@@ -28,16 +28,20 @@ class OfferCard extends PureComponent {
   }
 
   render() {
-    const {onFocus, offer, type} = this.props;
+    const {onFocus, onBlur, offer, type} = this.props;
 
     return (
 
       <article
         className={`${getComponentByType(type)} place-card`}
-        id={offer.index}
+        id={offer.id}
         onMouseEnter={(evt) => {
           evt.preventDefault();
-          onFocus(offer.index);
+          onFocus(offer.id);
+        }}
+        onMouseLeave={(evt) => {
+          evt.preventDefault();
+          onBlur(null);
         }}
       >
 

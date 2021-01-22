@@ -1,8 +1,10 @@
 import React, {PureComponent} from "react";
 import leaflet from 'leaflet';
 import "leaflet/dist/leaflet.css";
-
 import PropTypes from "prop-types";
+
+import {connect} from "react-redux";
+
 
 class Map extends PureComponent {
   constructor(props) {
@@ -13,25 +15,31 @@ class Map extends PureComponent {
 
   changeMapView() {
 
-    const {offer} = this.props;
+    const {offer, activeOffer} = this.props;
     const location = offer[0].city.location;
     const {latitude, longitude, zoom} = location;
     const city = [latitude, longitude];
-  
-    this.map.setView(city, zoom);
 
-    offer.map((item) => {
-      leaflet.marker([item.location.latitude, item.location.longitude], {icon: this.icon}).addTo(this.map)
-    });
-  }
-
-  componentDidMount() {
-  
     this.icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
 
+    this.activeIcon = leaflet.icon({
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [30, 30]
+    });
+  
+    this.map.setView(city, zoom);
+
+    offer.map((item) => {
+      const icon = item.id === activeOffer ? this.activeIcon : this.icon;
+      leaflet.marker([item.location.latitude, item.location.longitude], {icon}).addTo(this.map)
+    });
+  }
+
+  componentDidMount() {
+  
     this.map = leaflet.map(this.mapContainer.current, {
       zoomControl: false,
       marker: true
@@ -50,7 +58,7 @@ class Map extends PureComponent {
   }
 
   render() {
-  
+
     return (
 
       <section className="cities__map map" style={{height: `100%`}}>
@@ -66,4 +74,10 @@ Map.propTypes = {
   })).isRequired,
 };
 
-export default Map;
+const mapStateToProps = (state) => ({
+  activeOffer: state.activeOffer,
+});
+
+
+export {Map};
+export default connect(mapStateToProps)(Map);

@@ -14,4 +14,11 @@ export const Cities = {
   DUSSELDORF: `Dusseldorf`,
 };
 
+export const Filters = {
+  0: `popular`,
+  1: `price low to hight`,
+  2: `price hight to low`,
+  2: `top rated first`
+}
+
 export const MAX_RATING = 5;
