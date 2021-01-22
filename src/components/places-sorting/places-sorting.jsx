@@ -44,7 +44,8 @@ class PlacesSorting extends PureComponent {
         <span
           className="places__sorting-type"
           tabIndex="0"
-          onClick={this.toggleMenu}
+          onMouseEnter={this.toggleMenu}
+         
         >
           {values[activeFilter]}
           <svg className="places__sorting-arrow" width="7" height="4">
@@ -56,6 +57,7 @@ class PlacesSorting extends PureComponent {
           className={`places__options places__options--custom ${
             showMenu === true ? `places__options--opened` : null
           }`}
+          onMouseLeave={this.toggleMenu}
         >
           {OPTIONS.map((item, i) => (
             <li
