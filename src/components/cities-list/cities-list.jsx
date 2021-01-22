@@ -1,17 +1,15 @@
 
 import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
-import { on } from "events";
+import {connect} from "react-redux";
 
-class citiesList extends PureComponent {
+class СitiesList extends PureComponent {
 
   constructor(props) {
     super(props);
   }
 
   render() {
-    const {cities, active, onClick, offer, activeFilter} = this.props;
+    const {cities, activeCity, onClick, offer, activeFilter} = this.props;
 
     return (
         <div className="tabs">
@@ -19,7 +17,7 @@ class citiesList extends PureComponent {
           <ul className="locations__list tabs__list">
             {cities.map((item, i) => (
               <li className="locations__item" key={i}>
-                <a className={`locations__item-link tabs__item ${active === item ? `tabs__item--active` : null}`} href="#" onClick={() => onClick(offer, item, activeFilter)}>
+                <a className={`locations__item-link tabs__item ${activeCity === item ? `tabs__item--active` : null}`} href="#" onClick={() => onClick(offer, item, activeFilter)}>
                  <span>{item}</span>
                 </a>
             </li>
@@ -41,4 +39,12 @@ FavoriteCard.propTypes = {
   }).isRequired,
 }; */}
 
-export default citiesList;
+
+const mapStateToProps = (state) => ({
+  activeCity: state.activeCity,
+  activeFilter: state.activeFilter,
+});
+
+
+export {СitiesList};
+export default connect(mapStateToProps)(СitiesList);

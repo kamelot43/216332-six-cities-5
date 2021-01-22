@@ -15,8 +15,8 @@ class Map extends PureComponent {
 
   changeMapView() {
 
-    const {offer, activeOffer} = this.props;
-    const location = offer[0].city.location;
+    const {offersList, activeOffer} = this.props;
+    const location = offersList[0].city.location;
     const {latitude, longitude, zoom} = location;
     const city = [latitude, longitude];
 
@@ -32,7 +32,7 @@ class Map extends PureComponent {
   
     this.map.setView(city, zoom);
 
-    offer.map((item) => {
+    offersList.map((item) => {
       const icon = item.id === activeOffer ? this.activeIcon : this.icon;
       leaflet.marker([item.location.latitude, item.location.longitude], {icon}).addTo(this.map)
     });
@@ -76,6 +76,7 @@ Map.propTypes = {
 
 const mapStateToProps = (state) => ({
   activeOffer: state.activeOffer,
+  offersList: state.offersList,
 });
 
 

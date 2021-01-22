@@ -21,12 +21,12 @@ class Main extends PureComponent {
   }
 
   componentDidMount() {
-    const {offer, city, changeCity} = this.props;
-    changeCity(offer, city);
+    const {offer, activeCity, changeCity} = this.props;
+    changeCity(offer, activeCity);
   }
 
   render() {
-    const {offer, city, changeCity,  sortOffers, offersList, activeFilter} = this.props;
+    const {offer, activeCity, changeCity,  sortOffers, offersList, activeFilter} = this.props;
     const arrayCities = Object.values(Cities);
   
     return (
@@ -59,34 +59,27 @@ class Main extends PureComponent {
         <CitiesList
           offer={offer}
           cities={arrayCities}
-          active={city}
-          activeFilter={activeFilter}
           onClick={changeCity}
         />
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersList.length} places to stay in {city}</b>
+              <b className="places__found">{offersList.length} places to stay in {activeCity}</b>
 
               <PlacesSorting
                 onClick={sortOffers}
-                offer={offersList}
-                activeFilter={activeFilter}
               />
 
               <PlacesList
                 type={Type.CITY}
-                offer={offersList}
                 onFocus={() => {}}
               />
             </section>
 
             <div className="cities__right-section">
               {offersList.length > 0 ?
-              <Map
-                offer={offersList}
-               /> 
+              <Map/> 
               : null }
             </div>
           </div>
@@ -111,7 +104,7 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  city: state.city,
+  activeCity: state.activeCity,
   offersList: state.offersList,
   activeFilter: state.activeFilter,
 });

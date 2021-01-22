@@ -1,8 +1,9 @@
 import { extend } from "../utils";
 import { ActionType } from "./actions";
 
+//глобальное состояние приложения
 const initialState = {
-  city: "Paris",
+  activeCity: "Paris",
   offersList: [],
   activeFilter: 0,
   activeOffer: null
@@ -12,7 +13,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SET_CITY:
       return extend(state, {
-        city: action.payload
+        activeCity: action.payload
       });
 
     case ActionType.SET_OFFERS:

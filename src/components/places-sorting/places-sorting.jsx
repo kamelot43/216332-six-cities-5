@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 const OPTIONS = [
   "Popular",
@@ -8,23 +9,18 @@ const OPTIONS = [
   "Top rated firs"
 ];
 
+//задача взять переменную offer из глобального state, а не передавать как пропс
+
 class PlacesSorting extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
       values: OPTIONS,
-      showMenu: false
+      showMenu: false,
     };
 
-    this.handleItemClick = this.handleItemClick.bind(this);
     this.toggleMenu = this.toggleMenu.bind(this);
-  }
-
-  handleItemClick(evt) {
-    this.setState({
-      activeIndex: evt.target.id
-    });
   }
 
   toggleMenu() {
@@ -35,7 +31,7 @@ class PlacesSorting extends PureComponent {
 
   render() {
     const { values, showMenu } = this.state;
-    const {onClick, offer, activeFilter} = this.props;
+    const {onClick, offersList, activeFilter} = this.props;
 
     return (
       <form className="places__sorting" action="#" method="get">
@@ -66,10 +62,7 @@ class PlacesSorting extends PureComponent {
               tabIndex="0"
               id={i}
               onClick={() => { 
-                this.setState({
-                  activeIndex: activeFilter,
-                });
-                onClick(offer , i)
+                onClick(offersList , i)
               }}
             >
               {item}
@@ -89,4 +82,10 @@ class PlacesSorting extends PureComponent {
   }
 }
 
-export default PlacesSorting;
+const mapStateToProps = (state) => ({
+  offersList: state.offersList,
+  activeFilter: state.activeFilter,
+});
+
+export {PlacesSorting};
+export default connect(mapStateToProps)(PlacesSorting);

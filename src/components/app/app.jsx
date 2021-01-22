@@ -6,6 +6,8 @@ import AuthScreen from "../auth-screen/auth-screen";
 import FavoritesScreen from "../favorites/favorites";
 import Room from "../room/room";
 
+//задача валидация пропсов во всех компонентах приложения
+
 const App = (props) => {
 
   const {placesCount, offer, comments} = props;

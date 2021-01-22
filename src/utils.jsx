@@ -1,4 +1,4 @@
-import { MAX_RATING, Filters } from "./const";
+import { MAX_RATING} from "./const";
 
 export function roundUpRating(rating) {
   return Math.round(rating);

@@ -25,15 +25,16 @@ class PlacesList extends PureComponent {
 
   constructor(props) {
     super(props);
+
   }
 
   render() {
-    const {offer, type, changeActiveOffer} = this.props;
+    const {offersList, type, changeActiveOffer} = this.props;
    
     return (
       <>
       <div className={`${getComponentByType(type)} places__list`}>
-        {offer.map((item, i) => (
+        {offersList.map((item, i) => (
           <OfferCard
             key={`${i}`}
             type={type}
@@ -60,6 +61,7 @@ PlacesList.propTypes = {
 
 const mapStateToProps = (state) => ({
   activeOffer: state.activeOffer,
+  offersList: state.offersList,
 });
 
 const mapDispatchToProps = (dispatch) => ({
