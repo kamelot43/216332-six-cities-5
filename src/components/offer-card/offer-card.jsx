@@ -87,15 +87,8 @@ class OfferCard extends PureComponent {
 
 OfferCard.propTypes = {
   onFocus: PropTypes.func.isRequired,
-  offer: PropTypes.shape({
-    rating: PropTypes.string.isRequired,
-    premium: PropTypes.bool.isRequired,
-    index: PropTypes.number.isRequired,
-    picture: PropTypes.string.isRequired,
-    costPerNight: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-  }).isRequired,
+  onBlur: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default OfferCard;

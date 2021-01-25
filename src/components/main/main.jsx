@@ -26,7 +26,7 @@ class Main extends PureComponent {
   }
 
   render() {
-    const {offer, activeCity, changeCity,  sortOffers, offersList, activeFilter} = this.props;
+    const {offer, activeCity, changeCity,  sortOffers, offersList} = this.props;
     const arrayCities = Object.values(Cities);
   
     return (
@@ -124,6 +124,13 @@ const mapDispatchToProps = (dispatch) => ({
   },
   
 });
+
+Main.propTypes = {
+  activeCity: PropTypes.string.isRequired,
+  changeCity: PropTypes.func.isRequired,
+  sortOffers: PropTypes.func.isRequired,
+  offersList: PropTypes.array.isRequired,
+};
 
 
 export {Main};

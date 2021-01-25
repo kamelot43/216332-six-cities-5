@@ -7,6 +7,8 @@ import FavoritesScreen from "../favorites/favorites";
 import Room from "../room/room";
 
 //задача валидация пропсов во всех компонентах приложения
+//еще раз понять как работают HOC
+//попробовать применть на практике это паттерн
 
 const App = (props) => {
 

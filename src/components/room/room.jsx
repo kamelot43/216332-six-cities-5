@@ -1,10 +1,8 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import OfferCard from "../offer-card/offer-card";
 import FormComment from "../form-comment/form-comment";
 import ReviewList from "../review-list/review-list";
 import PlacesList from "../places-list/places-list";
-import Map from "../map/map";
 import {Link} from "react-router-dom";
 import {findPercent} from "../../utils";
 const MAX_OFFERS = 3;
@@ -146,13 +144,6 @@ class Room extends PureComponent {
                 </section>
               </div>
             </div>
-            <section className="property__map map">
-              {/*
-              <Map
-                offer={filterArray}
-              />
-              */}
-            </section>
           </section>
 
           <div className="container">
@@ -170,20 +161,8 @@ class Room extends PureComponent {
   }
 }
 
+
 Room.propTypes = {
-  offer: PropTypes.shape({
-    picture: PropTypes.string.isRequired,
-    costPerNight: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    pictures: PropTypes.array.isRequired,
-    premium: PropTypes.bool.isRequired,
-    bedrooms: PropTypes.number.isRequired,
-    maxAdults: PropTypes.number.isRequired,
-    rating: PropTypes.string.isRequired,
-    features: PropTypes.array.isRequired,
-    description: PropTypes.array.isRequired,
-  }).isRequired,
   comments: PropTypes.arrayOf(PropTypes.shape({
     type: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
@@ -193,6 +172,7 @@ Room.propTypes = {
     formatDateTime: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
   })).isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default Room;

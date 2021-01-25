@@ -48,13 +48,5 @@ class FavoriteCard extends PureComponent {
   }
 }
 
-FavoriteCard.propTypes = {
-  offer: PropTypes.shape({
-    picture: PropTypes.string.isRequired,
-    costPerNight: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 export default FavoriteCard;

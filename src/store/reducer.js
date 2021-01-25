@@ -6,7 +6,7 @@ const initialState = {
   activeCity: "Paris",
   offersList: [],
   activeFilter: 0,
-  activeOffer: null
+  activeOffer: ''
 };
 
 const reducer = (state = initialState, action) => {

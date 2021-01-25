@@ -49,14 +49,11 @@ class PlacesList extends PureComponent {
   }
 }
 
+
 PlacesList.propTypes = {
-  offer: PropTypes.arrayOf(PropTypes.shape({
-    index: PropTypes.number.isRequired,
-    picture: PropTypes.string.isRequired,
-    costPerNight: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-  })).isRequired,
+  type: PropTypes.string.isRequired,
+  changeActiveOffer: PropTypes.func.isRequired,
+  offersList: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -3,6 +3,8 @@ import FavoriteCard from "../favorite-card/favorite-card";
 import PropTypes from "prop-types";
 import {Cities} from "../../const";
 import {Link} from "react-router-dom";
+
+
 class FavoritesScreen extends PureComponent {
 
   constructor(props) {
@@ -71,14 +73,5 @@ class FavoritesScreen extends PureComponent {
     );
   }
 }
-
-FavoritesScreen.propTypes = {
-  offer: PropTypes.shape({
-    picture: PropTypes.string.isRequired,
-    costPerNight: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 export default FavoritesScreen;

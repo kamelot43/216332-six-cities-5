@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 
 import {connect} from "react-redux";
 
-
 class Map extends PureComponent {
   constructor(props) {
     super(props);
@@ -69,9 +68,7 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  offer: PropTypes.arrayOf(PropTypes.shape({
-    coordinates: PropTypes.array.isRequired,
-  })).isRequired,
+  offersList: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
